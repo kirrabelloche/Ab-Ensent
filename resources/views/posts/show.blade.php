@@ -97,12 +97,7 @@
 
                                     </dl>
 
-                                    <dl class="dl-horizontal ">
-                                        <label for="">Departement:</label>
-                                        <p>{{ $post->departement->name }}<p>
 
-
-                                    </dl>
                                     <dl class="dl-horizontal ">
                                         <label for="">Category:</label>
                                         <p>{{ $post->category->name }}<p>
@@ -159,11 +154,11 @@
                                         <td> {{ $comment->comment }} </td>
                                          <td>
                                           <div class='btn-group'>
-                                              <a href="{{ route('comments.edit',$comment->id) }}" class="btn btn-primary" title="Modifier utilisateur" ><i class="fas fa-pen"></i></a></li>
+                                              <a href="{{ route('comments.edit',$comment->id) }}" class="btn btn-primary" title="Modifier commentaire" ><i class="fas fa-pen"></i></a></li>
                                                     <form  action="{{ route('comments.delete',$comment->id) }}" method="DELETE"  class="bb"
                                                       style=" position: relative; "></form>
                                                       {{ csrf_field() }}
-                                                      <button class="btn btn-danger" title="Supprimer utilisateur"><i class="fas fa-trash"></i></button>
+                                                      <button class="btn btn-danger" title="Supprimer commentaire"><i class="fas fa-trash"></i></button>
                                                     </form>
                                           </div>
                                          </td>

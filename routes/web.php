@@ -51,7 +51,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
     Route::resource('posts','postController');
     Route::get('gettest','postController@getdeptfiliere')->name('post.gettest');
     Route::post('/store', ["as"=>'store','uses'=>'postController@store']);
-    Route::get('/show', ["as"=>'show','uses'=>'postController@show']);
+    Route::get('/show{}', ["as"=>'show','uses'=>'postController@show']);
     Route::post('/like', 'postController@postLike')->name('like');
 
     //categoriees

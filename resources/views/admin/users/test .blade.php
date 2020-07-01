@@ -51,54 +51,50 @@
 
                               <div class=" panel-body">
 
+                                {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method'=>'PUT']) !!}
+
+            <h1>update post </h1>
+            <hr>
+
+         {{Form::label('title','Title :')}}
+                {{Form::text('title',null,array('class'=>'form-control input-lg' , 'required'=>'','maxlength' =>'255'))}}
+                <br>
+            {{Form::label('slug', 'Slug :',['class'=>'form-spacing-top'])}}
+            {{Form::text('slug',null,array('class'=>'form-control','required'=>'', 'minlength'=>'5', 'maxlength'=>'255'))}}
+                 <br>
+                 {{Form::label('departement','Departement :' )}}
+                 {{Form::select('departement', $departements, null, ['class'=>'form-control', 'id'=>"departement" ])}}
+                 <br>
+                 <div id="div_dep" style="display:none">
+                    <fieldset>
+                        <label class="text-left"> Selectionner la ou les fillieres</label>
+                        <br>
+                        <select class="form-control select2-multi"  multiple="multiple" name="filiere[]" id="filiere">
+                            <option value='0' disable='true' selected='true'>Fillieres</option>
+                        </select>
+                    </fieldset>
+                </div>
+                <br>
 
 
 
 
-                                <div class="col-md-8">
-                                    <h1>{{$post->title}}</h1>
 
-                                   <p class="lead"> {!! $post->body !!} </p>
+            {{Form::label('category_id','Category :' )}}
+            {{Form::select('category_id', $categories, null, ['class'=>'form-control' ])}}
+            <br>
+
+            {{Form::label('tags', 'Tags :',['class'=>'form-spacing-top'])}}
+            {{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi', 'multiple'=>'multiple'])}}
+                 <br>
 
 
-                                   <div>
-                                       <img src="../../documents/{{$post->file}}"  style="height: 400px; width: 400px; clear: both; display: block; ">
-                                   </div>
-                                   <hr>
-                               <div class="tags">
-                                   @foreach ($post->tags as $tag)
-                                       <span class="label label-default">{{$tag->name}}</span>
-                                   @endforeach
-                               </div>
-                               <div id="backend-comments" style="margin-top: 50px";>
-                                <h3>Comments <small> {{ $post->comments()->count() }}  total </small></h3>
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Comment</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                       @foreach ($post->comments as $comment )
-                                       <tr>
-                                           <td> {{ $comment->name }} </td>
-                                           <td> {{ $comment->email }} </td>
-                                           <td> {{ $comment->comment }} </td>
-                                           <td>
-                                               <a href="{{ route('comments.edit',$comment->id) }}  " class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
-                                               <a href="{{ route('comments.delete',$comment->id) }}" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+            {{Form::label('body','Post Body :' )}}
+            {{Form::textarea('body',null,array('class'=>'form-control input-lg','required'=>''))}}
+            <br>
 
-                                       </tr>
-
-                                       @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            </div>
-
+                 {{Form::label('file','Piece jointe :')}}
+                {{Form::file('file',null,array('class'=>'form-control input-lg', ))}}
 
 
                         </div>
@@ -111,47 +107,33 @@
                             <div class="card-body">
 
 
-                                <div class="well">
+                              <br>
+                              <dl class="dl-horizontal">
+                                <dt>Create At:</dt>
+                                <dd>{{date('j M,Y H:ia',strtotime($post->created_at))}}</dd>
 
-                                    <dl class="dl-horizontal  ">
-                                        <label >Url:</label>
-                                        <p><a href="{{route('blog.single', $post->slug)}}">{{ route('blog.single', $post->slug)}}</a></p>
+                            </dl>
+                             <dl class="dl-horizontal">
+                                 <dt>Last Update:</dt>
+                                 <dd>{{date('j M ,Y H:ia',strtotime($post->updated_at))}}</dd>
 
-                                    </dl>
-                                    <dl class="dl-horizontal ">
-                                        <label for="">Category:</label>
-                                        <p>{{ $post->category->name }}<p>
+                             </dl>
+                             <hr>
+                             <div class="row">
+                                 <div class="col-sm-6">
+                                     {!! Html::linkRoute('posts.show','Cancel',array($post->id), array('class'=>'btn btn-danger btn-block')) !!}
+
+                                 </div>
+                                 <div class="col-sm-6">
+
+                                     {!! Form::submit('Save Changes', ['class' => 'btn btn-success btn-block']) !!}
 
 
-                                    </dl>
 
-                                   <dl class="dl-horizontal">
-                                       <label>Create At:</label>
-                                       <p>{{date('j M,Y  H:ia',strtotime($post->created_at))}}</p>
-
-                                   </dl>
-                                    <dl class="dl-horizontal">
-                                        <label>Last Update:</label>
-                                        <p>{{date('j M ,Y H:ia',strtotime($post->updated_at))}}</p>
-
-                                    </dl>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            {!! Html::linkRoute('posts.edit','Edit',array($post->id), array('class'=>'btn btn-primary btn-block')) !!}
-
-                                        </div>
-                                        <div class="col-sm-6">
-                                            {!! Form::open(['route' => ['posts.destroy', $post->id], 'method'=>'DELETE']) !!}
-                                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) !!}
-                                            {!! Form::close() !!}
-                                        </div>
-                                        <hr>
-                                        <div class="col-md-12">
-                                            {!! Html::linkRoute('posts.index','<< See All Posts',array($post->id), array('class'=>'btn btn-Dark btn-block ')) !!}
-                                        </div>
-                                    </div>
-                                </div>
+                                 </div>
+                             </div>
+                       
+                     {!! form::close() !!}
 
                           </div>
                         </div>

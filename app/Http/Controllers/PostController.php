@@ -70,6 +70,7 @@ class PostController extends Controller
             ));
 
             //store in the database
+            $users = User::all();
 
             $parameters = $request->except(['_token']);
             if($file = $request->file('file') )
@@ -96,9 +97,9 @@ class PostController extends Controller
                 }
             }
             $id = DB::getPdo()->lastInsertId();
-
             session::flash('success','The blog post was successfully serve!');
             return redirect()->route('posts.show',compact('id','post'));
+
 
 
 
@@ -111,10 +112,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
+        $depatements = Departement::all();
         $users = User::all();
         $post =post::find($id);
+
         return view('posts.show' , array('user'=>Auth::user()))->withpost($post)->with('users', $users);
 
     }

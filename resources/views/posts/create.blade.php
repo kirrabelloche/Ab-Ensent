@@ -50,7 +50,8 @@
                             <div class="card-body">
 
                               <div class=" panel-body">
-                                {!! Form::open(array('route'=>'store','data-parsley-validate' =>'','enctype'=>'multipart/form-data')) !!}
+
+                                {!! Form::open(array('route'=>'store','data-parsley-validate' =>'','enctype'=>'multipart/form-data','method'=>'POST')) !!}
                                 {{Form::label('title','Title :')}}
                                 {{Form::text('title',null,array('class'=>'form-control input-lg', 'required'=>'','maxlength' =>'255'))}}
                                <br>
@@ -65,10 +66,8 @@
 
                             <br>
 
-
-
-
-
+                            {{Form::label('file','Piece jointe :',['class'=>'form-spacing-top'])}}
+                            {{Form::file('file',null,array('class'=>'form-control', ))}}
 
                         </div>
 
