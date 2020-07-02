@@ -36,7 +36,7 @@
 
             <div class="card-body text-primary">
                 <!-- Small boxes (Stat box) -->
-                <img src="/uploads/avatars/{{ $user->auth()->avatar }}" style=" width:150px; height:150px; float:left; border-radius:50%; margin-right:25px";>
+                <img src="/uploads/avatars/{{ $user->auth()->avatar }}" style=" width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
                         <h2> {{ $user->name }}'s Profile </h2>
                         <form enctype="multipart/form-data" action="/profile" method="POST">
 
