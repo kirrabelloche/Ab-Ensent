@@ -7,12 +7,13 @@
                       <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                       <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                       <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                     
                     </ul>
                 </div>
                 <div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
-                    <a href="tel:+953 012 3654 896"><span class="lnr lnr-phone-handset"></span> <span class="text">+953 012 3654 896</span></a>
-                    <a href="mailto:support@colorlib.com"><span class="lnr lnr-envelope"></span> <span class="text">support@colorlib.com</span></a>
+                    <a href="(+237)690419016"><span class="lnr lnr-phone-handset"></span> <span class="text">(+237) 690419016</span></a>
+                    <a href="abenset@gmail.com"><span class="lnr lnr-envelope"></span> <span class="text">abenset@gmail.com</span></a>
+                    
                 </div>
             </div>
         </div>
@@ -23,28 +24,41 @@
           <a href="index.html"><img src="{{asset('assets/frontend/img/logo.png')}}" alt="" title="" /></a>
         </div>
         <nav id="nav-menu-container">
-          <ul class="nav-menu">
-            <li><a href="index.html">Home</a></li>
-            <li class="menu-has-children"><a href="">Blog</a>
-            <li><a href="about.html">About</a></li>
-            <li><a href="courses.html">Courses</a></li>
-            <li><a href="events.html">Events</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li class="menu-has-children"><a href="">Pages</a>
-              <ul>
-                    <li><a href="course-details.html">Course Details</a></li>
-                    <li><a href="event-details.html">Event Details</a></li>
-                  <li><a href="elements.html">Elements</a></li>
-                    <li class="menu-has-children"><a href="">Level 2 </a>
-                      <ul>
-                        <li><a href="#">Item One</a></li>
-                        <li><a href="#">Item Two</a></li>
-                      </ul>
-                    </li>
-              </ul>
-            </li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
+            <ul class="nav-menu">
+                <li class="{{Request::is('/')? "active": ""}}"><a href="/">Accueil</a></li>
+                
+                @if (Auth::check())
+                <li class= "{{Request::is('blog')? "active": ""}}"><a href="/blog">Blog</a></li>
+                <li><a href="about.html">forum</a></li>
+                <li><a href="courses.html">Cours</a></li>
+                <li><a href="events.html">Memoires</a></li>
+                <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i> messages</a></li>            
+                <li><a href="contact.html">Contact</a></li>            
+                <li class="menu-has-children"><a href=" <img src="/uploads/avatars/{{ Auth::user()->avatar }}" style=" width:32px; height:32px; position:absolute; left:40px; top:0px;  border-radius:50%;"> {{ Auth::user()->name }}</a>
+                    <img src="/uploads/avatars/{{ Auth::user()->avatar }}" style=" width:32px; height:32px; position:absolute; left:10px; top:0px;  border-radius:50%; ">
+                    <ul>
+                      <li> 
+                          <a class="dropdown-item" href="{{ route('profile') }}"><i class="fa fa-btn fa-user"></i>
+                             Profile
+                             </a>
+                       </li>
+                        <li> <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
+                </li>                 
+                @else
+                <li> <a href="{{route('login')}}" class="btn btn-default">connexion</a></li>
+                   
+             @endif
+            </ul>
         </nav><!-- #nav-menu-container -->
       </div>
   </div>
