@@ -27,12 +27,12 @@
                   <div class="container-fluid">
                        <div class="row mb-2">
                            <div class="col-sm-6">
-                                <h1>update post</h1>
+                                <h1>Editer Communiqué</h1>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active">update post</li>
+                                    <li class="breadcrumb-item"><a href="#">Accuiel</a></li>
+                                    <li class="breadcrumb-item active">Editer Communiqué</li>
                                 </ol>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
 
                                 {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method'=>'PUT']) !!}
 
-         {{Form::label('title','Title :')}}
+         {{Form::label('title','Titre :')}}
                 {{Form::text('title',null,array('class'=>'form-control input-lg' , 'required'=>'','maxlength' =>'255'))}}
                 <br>
             {{Form::label('slug', 'Slug :',['class'=>'form-spacing-top'])}}
@@ -77,20 +77,20 @@
 
 
 
-            {{Form::label('category_id','Category :' )}}
+            {{Form::label('category_id','type :' )}}
             {{Form::select('category_id', $categories, null, ['class'=>'form-control' ])}}
             <br>
 
-            {{Form::label('tags', 'Tags :',['class'=>'form-spacing-top'])}}
+            {{Form::label('tag', 'Application :',['class'=>'form-spacing-top'])}}
             {{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi', 'multiple'=>'multiple'])}}
-                 <br>
+                 <br><br>
 
 
-            {{Form::label('body','Post Body :' )}}
+            {{Form::label('body','Contenus du communiqué :' )}}
             {{Form::textarea('body',null,array('class'=>'form-control input-lg','required'=>''))}}
             <br>
 
-                 {{Form::label('file','Piece jointe :')}}
+                 {{Form::label('file','Comuniqué :')}}
                 {{Form::file('file',null,array('class'=>'form-control input-lg', ))}}
 
 
@@ -106,19 +106,19 @@
 
                               <br>
                               <dl class="dl-horizontal">
-                                <dt>Create At:</dt>
+                                <dt>Créer Le:</dt>
                                 <dd>{{date('j M,Y H:ia',strtotime($post->created_at))}}</dd>
 
                             </dl>
                              <dl class="dl-horizontal">
-                                 <dt>Last Update:</dt>
+                                 <dt>dernière Mise à jour:</dt>
                                  <dd>{{date('j M ,Y H:ia',strtotime($post->updated_at))}}</dd>
 
                              </dl>
                              <hr>
                              <div class="row">
                                  <div class="col-sm-6">
-                                     {!! Html::linkRoute('posts.show','Cancel',array($post->id), array('class'=>'btn btn-danger btn-block')) !!}
+                                     {!! Html::linkRoute('posts.show','Cancel',array($errors->id), array('class'=>'btn btn-danger btn-block')) !!}
 
                                  </div>
                                  <div class="col-sm-6">

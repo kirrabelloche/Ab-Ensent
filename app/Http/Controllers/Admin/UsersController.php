@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Role;
 use Auth;
+use App\Role;
 use App\user;
+use App\Cours;
+use App\Classes;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use Illuminate\Foundation\Console\Presets\Vue;
 
@@ -29,9 +32,24 @@ class UsersController extends Controller
      */
 
 
+
     public function getWelcome()
     {
         return View('admin.users.welcome '  , array('user'=>Auth::user()));
+    }
+
+    public function getCourses()
+    {
+        $users = User::all();
+        $classes = Classes::all();
+        $cours = Cours::with('user')->get();
+        $cours = Cours::with('classes')->get();
+        $user_id = \App\User::whereHas('roles', function ($q) { $q->where('role_id', 3); } )->get();
+        $etudiants = \App\User::whereHas('roles', function ($q) { $q->where('role_id', 5); } )->get();
+        //$etudiants->paginate(4);
+        //$etudiants = User::orderBy('id','desc')->paginate(4);
+        //dd($etudiants);
+        return View('admin.cours.courses ',compact('user_id'),compact('etudiants')  , array('user'=>Auth::user()))->withcours($cours)->with('users', $users);
     }
 
     public function index()
@@ -70,7 +88,7 @@ class UsersController extends Controller
         $user->roles()->sync($request->roles);
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = $request-> Hash::make('password');
 
 
         $user->save();

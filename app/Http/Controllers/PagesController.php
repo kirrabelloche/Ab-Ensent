@@ -22,8 +22,13 @@ class PagesController extends Controller
 
     }
     public function getContact(){
-        
+
         return view('pages.contact');
+
+    }
+    public function getTest(){
+
+        return view('pages.test');
 
     }
     public function postContact(Request $request){
@@ -36,15 +41,15 @@ class PagesController extends Controller
                 'email' => $request->email,
                 'subject' => $request->subject,
                 'bodyMessage' => $request->message
-                
+
             );
 
             Mail::send('emails.contact', $data, function ($message)use ($data) {
             $message->from($data['email']);
             $message->to('kirraridibo@gmail.com');
             $message->subject($data['subject']);
-               
-               
+
+
             });
             Session::flash('success', 'Your Email was sent. ');
             return redirect('/');

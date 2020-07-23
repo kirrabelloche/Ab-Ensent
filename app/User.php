@@ -58,5 +58,10 @@ public function isAdmin()
     {
         return $this->roles()->whereIn('name', $roles)->first();
     }
-
+   
+    public function cours() {
+  
+        return $this->hasMany(Post::class);
+     
+    }
 }

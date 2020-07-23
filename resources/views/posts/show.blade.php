@@ -20,19 +20,22 @@
 
 
 
-
     <div class="content-wrapper ">
         <!-- Content Header (Page header) -->
+        <div class="container" >
+            @include('partials._message')
+         </div>
+
                <section class="content-header">
                   <div class="container-fluid">
                        <div class="row mb-2">
                            <div class="col-sm-6">
-                                <h1>Create New Post</h1>
+                                <h1>Communiqué Detaille</h1>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active">Create New Post</li>
+                                    <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+                                    <li class="breadcrumb-item active">Communiqué Detaille</li>
                                 </ol>
                             </div>
                         </div>
@@ -96,30 +99,23 @@
                                         <p><a href="{{route('blog.single', $post->slug)}}">{{ route('blog.single', $post->slug)}}</a></p>
 
                                     </dl>
-
-
                                     <dl class="dl-horizontal ">
                                         <label for="">Category:</label>
                                         <p>{{ $post->category->name }}<p>
-
-
                                     </dl>
 
                                    <dl class="dl-horizontal">
                                        <label>Create At:</label>
                                        <p>{{date('j M,Y  H:ia',strtotime($post->created_at))}}</p>
-
                                    </dl>
                                     <dl class="dl-horizontal">
                                         <label>Last Update:</label>
                                         <p>{{date('j M ,Y H:ia',strtotime($post->updated_at))}}</p>
-
                                     </dl>
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             {!! Html::linkRoute('posts.edit','Edit',array($post->id), array('class'=>'btn btn-primary btn-block')) !!}
-
                                         </div>
                                         <div class="col-sm-6">
                                             {!! Form::open(['route' => ['posts.destroy', $post->id], 'method'=>'DELETE']) !!}
@@ -142,7 +138,8 @@
                           <thead>
                           <tr>
                             <th>ID</th>
-                            <th>Name</th>
+                            <th>Nom</th>
+                            <th>CCommentaires</th>
                             <th>Action</th>
                           </tr>
                            </thead>
@@ -168,7 +165,8 @@
                           <tfoot>
                           <tr>
                             <th>ID</th>
-                            <th>Name</th>
+                            <th>Nom</th>
+                            <th>Commentaire</th>
                             <th>Action</th>
 
                           </tr>

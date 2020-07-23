@@ -90,7 +90,6 @@ class PostController extends Controller
                     $post->user_id = auth()->id();
                     $post->save();
                     $post->tags()->sync($request->tags,false);
-                    $post->filiere()->sync($request->filieres,false);
 
 
 
@@ -130,11 +129,6 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-
-
-
-
-
                 $post =post::find($id);
                 $categories=Category::all();
                 $cats =array();
@@ -165,6 +159,7 @@ class PostController extends Controller
 
 
 
+
         return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2)->withDepartements($deps)->withFilieres($fils);
     }
 
@@ -180,7 +175,8 @@ class PostController extends Controller
 
         //validate the data
         $post = post::find($id);
-        if($request->input('slug') ==$post->slug){
+
+        if($request->input('slug')==$post->slug){
             $this->validate($request,array(
                 'title'=>'required|max:255',
                 'category_id'=>'required|integer',
@@ -223,16 +219,17 @@ class PostController extends Controller
         }else{
             $post->tags()->sync(array());
         }
-        if(isset($request->filieres)){
-            $post->filiere()->sync($request->filieres);
-        }else{
-            $post->filiere()->sync(array());
-        }
+        //if(isset($request->filieres)){
+            //$post->filiere()->sync($request->filieres);
+       // }else{
+            //$post->filiere()->sync(array());
+        //}
 
 
 
 
         // set flash message success rediriger ver data s
+        session::flash('success','Votre Communiqué a été bien Editer');
         $post =post::find($id);
         return view('posts.show')->withpost($post);
 

@@ -28,6 +28,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function () {
     Route::resource('users', 'UsersController');
     Route::get('welcome', 'UsersController@getWelcome');
+    Route::get('courses', 'UsersController@getCourses');
+
+     Route::resource('cours', 'CoursController');
+     Route::get('cours_classe', 'CoursController@getCours_class');
+     Route::post('/store', ["as"=>'store','uses'=>'CoursController@store']);
+     Route::get('/show{}', ["as"=>'show','uses'=>'CoursController@show']);
+     Route::post('/coment/store', 'ComentController@store')->name('coment.add');
+     Route::post('/reply/store', 'ComentController@replyStore')->name('reply.add');
+
+
 
  });
 // route validation ajax login + register
@@ -45,6 +55,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
     Route::get('blog/{slug}', ["as"=>'blog.single','uses'=>'BlogController@getSingle'])->where('slug','[\w\d\-\_]+');
     Route::get('blog',['as'=>'blog.index','uses'=>'BlogController@getIndex2']);
     Route::get('about','pagesController@getAbout');
+    Route::get('about','pagesController@getAbout');
     Route::get('contact', 'pagesController@getContact');
     Route::post('contact', 'pagesController@postContact');
     Route::get('/', 'pagesController@getIndex');
@@ -53,6 +64,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
     Route::post('/store', ["as"=>'store','uses'=>'postController@store']);
     Route::get('/show{}', ["as"=>'show','uses'=>'postController@show']);
     Route::post('/like', 'postController@postLike')->name('like');
+    Route::get('tests', 'pagesController@getTest')->name('tests');
+    // cours
+    Route::get('cours/{slug}', ["as"=>'cours.single','uses'=>'CoursController@getSingle'])->where('slug','[\w\d\-\_]+');
+    Route::get('cours',['as'=>'cours.index','uses'=>'CoursController@getIndex2']);
 
     //categoriees
     Route::resource('categories','CategoryController', ['except' => ['create']]);

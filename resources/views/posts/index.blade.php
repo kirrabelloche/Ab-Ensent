@@ -21,12 +21,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>List posts</h1>
+                <h1>Tous Les communiqués</h1>
                 </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Lists Users</li>
+                            <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+                            <li class="breadcrumb-item active">Tous les Communiqués</li>
                         </ol>
                      </div>
                 </div>
@@ -43,7 +43,7 @@
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">
-                      <a href="{{route('posts.create') }}" class="btn btn-primary" title="Modifier utilisateur" ><i class="fa fa-plus" aria-hidden="true"></i>  Create New Post</a>
+                      <a href="{{route('posts.create') }}" class="btn btn-primary" title="Modifier utilisateur" ><i class="fa fa-plus" aria-hidden="true"></i> Communiqué</a>
                   </h3>
 
                     <p col-md-offset>
@@ -56,12 +56,12 @@
                       <thead>
                       <tr>
                         <th>ID</th>
-                        <th>Title</th>
+                        <th>Titre</th>
                         <th>slug</th>
-                        <th>Body</th>
-                        <th>File</th>
+                        <th>Contenue</th>
+                        <th>Photo</th>
 
-                        <th>Created At</th>
+                        <th>Date creation</th>
 
                         <th>Action</th>
                       </tr>
@@ -79,17 +79,17 @@
 
                               <div class='btn-group'>
 
-                                  <a href="{{route('posts.edit',$post->id)}}" class="btn btn-primary" title="Edit post" ><i class="fas fa-pen"></i></a></li>
+                                  <a href="{{route('posts.edit',$post->id)}}" class="btn btn-primary" title="Editer Communiquer" ><i class="fas fa-pen"></i></a></li>
 
 
-                                  <a href="{{route('posts.show',$post->id)}}" title="Voir utilisateur" class="btn btn-success"><i class="fas fa-user-alt"></i></a></li>
+                                  <a href="{{route('posts.show',$post->id)}}" title="Voir Communiqué" class="btn btn-success"><i class="fas fa-user-alt"></i></a></li>
 
 
 
                                       <form  action="{{ route('posts.destroy',$post->id) }}" method="DELETE"
 
                                           {{ csrf_field() }}
-                                          <button class="btn btn-danger" title="Supprimer utilisateur"><i class="fas fa-trash"></i></button>
+                                          <button class="btn btn-danger" title="Supprimer Communiqué"><i class="fas fa-trash"></i></button>
                                       </form>
 
                               </div>
@@ -104,12 +104,12 @@
                       <tfoot>
                       <tr>
                         <th>ID</th>
-                        <th>Title</th>
+                        <th>Titre</th>
                         <th>slug</th>
-                        <th>Body</th>
-                        <th>File</th>
+                        <th>contenue</th>
+                        <th>photo</th>
 
-                        <th>Created At</th>
+                        <th>Datcreatione </th>
 
                         <th>Action</th>
                       </tr>

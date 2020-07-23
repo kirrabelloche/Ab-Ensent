@@ -24,6 +24,8 @@
   <link rel="stylesheet" href="{{asset('assets/plugins/daterangepicker/daterangepicker.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('assets/plugins/summernote/summernote-bs4.css')}}">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
   {!! Html::style('css/select2.min.css') !!}
 
 
@@ -47,6 +49,9 @@
 
   <!-- Navbar_lat -->
   @include('partials.dashbord.nav_lat')
+
+ 
+
 
   <!-- /.navbar -->
 
@@ -161,8 +166,22 @@ $('.select2-multi').select2();
 </script>
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script>
-CKEDITOR.replace( 'summary-ckeditor' );
+CKEDITOR.replace( 'body' );
 </script>
+<script>
+  $(document).ready(function() {
+      $('#title').on('keyup', function(){
 
+          var theTitle = this.value.toLowerCase().trim();
+          slugInput = $('#slug'),
+          theSlug = theTitle.replace(/&/g, '-and-')
+                            .replace(/[^a-z0-9]+/g, '-')
+                            .replace(/\-\-+/g, '-')
+                            .replace(/^-+|-+&/g, '');
+
+                            slugInput.val(theSlug);
+      });
+  });
+</script>
 </body>
 </html>

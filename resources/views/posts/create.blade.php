@@ -52,21 +52,23 @@
                               <div class=" panel-body">
 
                                 {!! Form::open(array('route'=>'store','data-parsley-validate' =>'','enctype'=>'multipart/form-data','method'=>'POST')) !!}
-                                {{Form::label('title','Title :')}}
+                                @csrf
+
+                                {{Form::label('title','Titre :')}}
                                 {{Form::text('title',null,array('class'=>'form-control input-lg', 'required'=>'','maxlength' =>'255'))}}
                                <br>
                             {{Form::label('slug', 'Slug :',['class'=>'form-spacing-top'])}}
-                            {{Form::text('slug',null,array('class'=>'form-control','required'=>'', 'minlength'=>'5', 'maxlength'=>'255'))}}
+                            {{Form::text('slug',null,array('class'=>'form-control','required'=>'', 'minlength'=>'5', 'maxlength'=>'255','id' => 'slug'))}}
 
                             <br>
 
 
-                            {{Form::label('body','Post Body :'),[ 'class'=>'form-spacing-top']}}
+                            {{Form::label('body','Description :'),[ 'class'=>'form-spacing-top']}}
                             {{Form::textarea('body',null,array('class'=>'form-control '))}}
 
                             <br>
 
-                            {{Form::label('file','Piece jointe :',['class'=>'form-spacing-top'])}}
+                            {{Form::label('file','Contenue:',['class'=>'form-spacing-top'])}}
                             {{Form::file('file',null,array('class'=>'form-control', ))}}
 
                         </div>
@@ -182,6 +184,21 @@ $('.select2-multi').select2();
                 $.each(data, function(index, filiereObj){
                     $('#filiere').append('<option value="'+ filiereObj.id +'">'+ filiereObj.name +'</option>');
                 })
+            });
+        });
+
+        $(document).ready(function() {
+            //console.log('hi');
+            $('#title').on('keyup', function(){
+
+                var theTitle = this.value.toLowerCase().trim();
+                slugInput = $('#slug'),
+                theSlug = theTitle.replace(/&/g, '-and-')
+                                  .replace(/[^a-z0-9]+/g, '-')
+                                  .replace(/\-\-+/g, '-')
+                                  .replace(/^-+|-+&/g, '');
+
+                                  slugInput.val(theSlug);
             });
         });
 </script>

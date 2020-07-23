@@ -14,7 +14,7 @@ class AddDepartementIdToPostsTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->unsignedInteger('departement_id')->nullable()->after('category_id');
+            $table->unsignedInteger('departement_id')->nullable()->after('user_id');
         });
     }
 

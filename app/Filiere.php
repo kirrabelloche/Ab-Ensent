@@ -11,5 +11,11 @@ class Filiere extends Model
     public function posts(){
         return $this->belongsToMany('App\Post', 'filiere_post');
     }
+    public function filiere(){
+        return $this->belongsToMany('App\Filiere');
+    }
+    public function departement(){
+        return $this->belongsTo('App\Departement');
+    }
 
 }

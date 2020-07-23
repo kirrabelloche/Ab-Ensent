@@ -116,6 +116,9 @@
                 <nav class="blog-pagination justify-content-center d-flex">
 
                         {!! $posts->links(); !!}
+                        
+
+                        </nav>
 
             </div>
 

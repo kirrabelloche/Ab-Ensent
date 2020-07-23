@@ -26,13 +26,14 @@
         <nav id="nav-menu-container">
             <ul class="nav-menu">
                 <li class="{{Request::is('/')? "active": ""}}"><a href="/">Accueil</a></li>
+                <li class= "{{Request::is('about')? "active": ""}}"><a href="/about">A Propos</a></li> 
                 
                 @if (Auth::check())
-                <li class= "{{Request::is('blog')? "active": ""}}"><a href="/blog">Blog</a></li>
-                <li><a href="about.html">forum</a></li>
-                <li><a href="courses.html">Cours</a></li>
+                <li class= "{{Request::is('blog')? "active": ""}}"><a href="/blog">Communiqués & Evenement</a></li>
+                <li class= "{{Request::is('cours')? "active": ""}}"><a href="/cours">cours</a></li>
                 <li><a href="events.html">Memoires</a></li>
-                <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i> messages</a></li>            
+                <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i> messages</a></li>    
+                  
                 <li><a href="contact.html">Contact</a></li>            
                 <li class="menu-has-children"><a href=" <img src="/uploads/avatars/{{ Auth::user()->avatar }}" style=" width:32px; height:32px; position:absolute; left:40px; top:0px;  border-radius:50%;"> {{ Auth::user()->name }}</a>
                     <img src="/uploads/avatars/{{ Auth::user()->avatar }}" style=" width:32px; height:32px; position:absolute; left:10px; top:0px;  border-radius:50%; ">

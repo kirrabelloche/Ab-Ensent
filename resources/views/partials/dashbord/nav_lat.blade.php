@@ -5,7 +5,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="{{ route('admin.') }}" class="nav-link">Accuiel</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -27,6 +27,12 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
+      <li class="nav-item">
+        <a class="btn btn-primary" href="{{ route('home') }}" role="button">
+          <i class="fas fa-th-large"> </i>
+          Rentrée a l'Acuueil
+        </a>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-comments"></i>
@@ -114,20 +120,21 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-          <a href="{{ route('logout') }}" "
-        onclick="event.preventDefault();
-                 document.getElementById('logout-form').submit();">
-                 <i class='fas fa-sign-out-alt' style='font-size:36px;color:red'></i>
-    </a>
 
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        {{ csrf_field() }}
-    </form></li>
+      <li class="nav-item">
+                <a href="{{ route('logout') }}" "
+                onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        <i class='fas fa-sign-out-alt' style='font-size:36px;color:#b3342d;'></i>
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+        </li>
+        <li> <a href=""></a> </li>
+
     </ul>
+
   </nav>
+  
